@@ -8,8 +8,20 @@
     </div>
   </div>
 
-  <div class="" *ngFor="let x of disponibilidadObj">
-    {{x.date}}
-    {{x.range}}
+<p>
+<select (change)="selectChangeHandler($event)">
+<option [value]="item" *ngFor="let item of selectDate">{{item}}</option>
+</select>
+</p>
+
+<p>Disponibilidad de: {{startRange}} a {{endRange}}</p>
+<!--[ngClass]="(hour.libre === true)?'alert alert-success':'alert alert-danger'"-->
+  <div class="row">
+    <div class="mt-3" *ngFor="let hour of hours">
+
+      <span class="col-sm-1 mt-5" *ngIf="hour.hora"
+            [ngClass]="(hour.libre === true)?'alert alert-success':'alert alert-danger'"
+            >{{hour.hora}}</span>
+    </div>
   </div>
 </div>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { ReservaComponent } from './reserva/reserva.component';
     AppRoutingModule,
     HttpClientModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
