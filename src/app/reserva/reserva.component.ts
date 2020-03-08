@@ -21,7 +21,7 @@ export class ReservaComponent implements OnInit {
   hours: any[] = [];
 
   constructor(private service: ReservasService,
-              private route: ActivatedRoute) { 
+              private route: ActivatedRoute) {
               }
 
   ngOnInit() {
@@ -48,12 +48,11 @@ export class ReservaComponent implements OnInit {
   }
 
   createObjHours(disponibilidad){
-    for (var i = 0; i < disponibilidad.length; i++) {
+    for (let i = 0; i < disponibilidad.length; i++) {
       this.selectDate.push(disponibilidad[i].date);
       this.dict[disponibilidad[i].date] = [disponibilidad[i].range.start, disponibilidad[i].range.end];
-      console.log(this.selectDate);
-      console.log(this.dict);
     }
+    this.searchRangeHours(this.selectDate[0]);
   }
 
   selectChangeHandler (event: any) {
@@ -65,21 +64,28 @@ export class ReservaComponent implements OnInit {
     this.rangeHours = this.dict[selectDay];
     this.startRange = this.rangeHours[0];
     this.endRange = this.rangeHours[1];
-    this.createWidgetHours();
+    this.createWidgetHours(selectDay, this.startRange, this.endRange);
   }
 
 
-  createWidgetHours(){
+  createWidgetHours(date, start, end) {
+    const year = date.substring(0, 4);
+    const month = date.substring(5, 7);
+    const day = date.substring(8, 10);
+    const startSbstr = start.substring(0, 2);
+    const endSbstr = end.substring(0, 2);
 
-    for (var i = 0; i < 24; i++) {
+    this.hours = [];
+    for (let i = 0; i < 24; i++) {
       this.hours.push([i + ':00']);
-      
+      if (new Date(year, month, day, i, 0, 0) >= new Date(year, month, day, startSbstr, 0, 0)  &&
+          new Date(year, month, day, i, 0, 0) <= new Date(year, month, day, endSbstr, 0, 0)) {
 
-      if(new Date(2020,2,1,i,0,0) >= new Date(2020,2,1,11,0,0)  && new Date(2020,2,1,i,0,0) <= new Date(2020,2,1,17,0,0)){
-        this.hours.push({'hora':i + ':00', 'libre': true});
-        console.log(this.hours[i]);
-      }else{
-        this.hours.push({'hora':i + ':00', 'libre': false});
+          this.hours.push({hora: i + ':00', libre: true});
+
+      } else {
+
+          this.hours.push({hora: i + ':00', libre: false});
       }
     }
   }

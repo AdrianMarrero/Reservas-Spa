@@ -34,6 +34,22 @@ export class InMemoryDataService implements InMemoryDbService {
           end: '17:00'
         },
       },
+      {
+        date: '2020-02-03',
+        range:
+        {
+          start: '10:00',
+          end: '11:00'
+        },
+      },
+      {
+        date: '2020-02-04',
+        range:
+        {
+          start: '15:00',
+          end: '20:00'
+        },
+      },
     ];
 
 

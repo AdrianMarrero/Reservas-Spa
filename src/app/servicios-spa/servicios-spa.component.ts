@@ -1,5 +1,6 @@
 import { ReservasService } from './../services/reservas.service';
 import { Component, OnInit } from '@angular/core';
+
 import { ServicioModel } from '../models/servicio.model';
 
 @Component({
@@ -13,15 +14,17 @@ export class ServiciosSpaComponent implements OnInit {
 
   constructor(private servicios: ReservasService) { }
 
+
   ngOnInit() {
     this.listAll();
   }
 
-  listAll(){
+  listAll() {
     this.servicios.getAllServicios()
     .subscribe( resp => {
       console.log(resp);
       this.serviciosList = resp;
     });
   }
+
 }

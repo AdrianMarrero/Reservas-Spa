@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
@@ -10,6 +10,10 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ServiciosSpaComponent } from './servicios-spa/servicios-spa.component';
 import { ReservaComponent } from './reserva/reserva.component';
+
+import { registerLocaleData } from '@angular/common';
+import localeEsAr from '@angular/common/locales/es';
+registerLocaleData(localeEsAr, 'es');
 
 @NgModule({
   declarations: [
@@ -25,7 +29,7 @@ import { ReservaComponent } from './reserva/reserva.component';
     InMemoryWebApiModule.forRoot(InMemoryDataService),
     FormsModule
   ],
-  providers: [],
+  providers: [ { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

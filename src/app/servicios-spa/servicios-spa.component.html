@@ -1,4 +1,7 @@
 <div class="container">
+
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
   <div class="row" *ngFor="let servicio of serviciosList">
     <div class="col">
       <p>{{servicio.id}}</p>
