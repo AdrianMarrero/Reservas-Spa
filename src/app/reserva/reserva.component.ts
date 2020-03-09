@@ -19,6 +19,7 @@ export class ReservaComponent implements OnInit {
   startRange: string;
   endRange: string;
   hours: any[] = [];
+  imgUrl = 'assets/img/';
 
   constructor(private service: ReservasService,
               private route: ActivatedRoute) {

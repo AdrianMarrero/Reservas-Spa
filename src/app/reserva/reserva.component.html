@@ -1,18 +1,35 @@
 <div class="container">
-  <div class="row" *ngFor="let servicio of servicioSeleccionado">
-    <div class="col">
-      <p>{{servicio.id}}</p>
-      <p>{{servicio.name}}</p>
-      <p>{{servicio.description}}</p>
-      <p>{{servicio.price}}</p>
+
+  <button type="button"
+          class="btn btn-primary btn-sm mt-3"
+          routerLink="'[/servicios]'">
+  Volver
+  </button>
+
+
+  <div class="card mb-3 col-md-12 mt-3 animated fadeInDown" *ngFor="let servicio of servicioSeleccionado">
+    <div class="row no-gutters" *ngIf="!servicio.nodata">
+      <div class="col-md-4">
+        <img src="{{imgUrl + servicio.img}}" class="card-img mt-3 mb-3" width="500" height="200">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">{{servicio.name}}</h5>
+          <p class="card-text">{{servicio.description}}</p>
+          <span class="card-text"><small class="text-muted">Precio: {{servicio.price}} €</small></span>
+        </div>
+      </div>
     </div>
   </div>
 
+
   <div class="row">
-    <label for="select">Selecciona una fecha para ver la disponibilidad</label>
-    <select id="select" class="form-control" (change)="selectChangeHandler($event)">
-      <option [value]="item" *ngFor="let item of selectDate">{{item | date}}</option>
-    </select>
+    <div class="col">
+      <label for="select">Selecciona una fecha para ver la disponibilidad</label>
+      <select id="select" class="form-control" (change)="selectChangeHandler($event)">
+        <option [value]="item" *ngFor="let item of selectDate">{{item | date}}</option>
+      </select>
+    </div>
   </div>
 
   <div class="row mt-5">
@@ -22,10 +39,12 @@
   </div>
 
   <div class="row">
-      <div class="" *ngFor="let hour of hours">
-        <div  style="width: 100px;" class="col-sm animated heartBeat" *ngIf="hour.hora"
-              [ngClass]="(hour.libre === true)?'alert alert-success':'alert alert-danger'"
-              >{{hour.hora}}
+      <div *ngFor="let hour of hours">
+        <div class="col">
+          <div  style="width: 100px;" class="col-sm animated heartBeat" *ngIf="hour.hora"
+                [ngClass]="(hour.libre === true)?'alert alert-success':'alert alert-danger'"
+                >{{hour.hora}}
+          </div>
         </div>
       </div>
   </div>

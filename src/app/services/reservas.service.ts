@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map} from 'rxjs/operators';
+import { ServicioModel } from '../models/servicio.model';
 
 
 @Injectable({
@@ -21,7 +22,11 @@ export class ReservasService {
   }
 
   getDisponibilidad(){
-    return this.http.get(`api/disponibilidad`)
+    return this.http.get(`api/disponibilidad`);
   }
 
+  getAllServiciosOrderBy(filter) {    return this.http.get<ServicioModel[]>(this.urlServicios).pipe(
+      map(messages => messages.sort((a1: ServicioModel, a2: ServicioModel) => a1.price - a2.price ))
+    );
+  }
 }

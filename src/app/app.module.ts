@@ -13,6 +13,7 @@ import { ReservaComponent } from './reserva/reserva.component';
 
 import { registerLocaleData } from '@angular/common';
 import localeEsAr from '@angular/common/locales/es';
+import { FilterPipe } from './pipes/filter.pipe';
 registerLocaleData(localeEsAr, 'es');
 
 @NgModule({
@@ -21,13 +22,15 @@ registerLocaleData(localeEsAr, 'es');
     NavbarComponent,
     ServiciosSpaComponent,
     ReservaComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
-    FormsModule
+    InMemoryWebApiModule.forRoot(InMemoryDataService)
+
   ],
   providers: [ { provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]

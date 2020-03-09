@@ -1,18 +1,63 @@
 <div class="container">
 
-  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
-  <div class="row" *ngFor="let servicio of serviciosList">
-    <div class="col">
-      <p>{{servicio.id}}</p>
-      <p>{{servicio.name}}</p>
-      <p>{{servicio.description}}</p>
-      <p>{{servicio.price}}</p>
-      <button type="button"
-              class="btn btn-primary btn-sm"
-              [routerLink]="['/reserva', servicio.id]">
-              Reservar
-      </button>
+  <div class="row">
+    <div class="col mt-3">
+      <div class="form-group">
+        <label>Buscar</label>
+        <input  [(ngModel)]="filterServicio"
+                type="text"
+                name="filterServicio"
+                class="form-control"
+                placeholder="Buscar servicio">
+      </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="custom-control custom-checkbox my-1 mr-sm-2">
+        <input type="checkbox"
+               class="custom-control-input"
+               id="customControlInline"
+               [ngModel]="filter" (ngModelChange)="onFilterChange($event)">
+        <label class="custom-control-label" for="customControlInline">Económicos primero</label>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mt-5">
+
+    <div class="card mb-3 col-md-12 animated fadeIn" *ngFor="let servicio of serviciosList | filter:filterServicio">
+      <div class="row no-gutters" *ngIf="!servicio.nodata">
+        <div class="col-md-4">
+          <img src="{{imgUrl + servicio.img}}" class="card-img mt-3 mb-3" width="500" height="200">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{servicio.name}}</h5>
+            <p class="card-text">{{servicio.description}}</p>
+            <span class="card-text"><small class="text-muted">Precio: {{servicio.price}} €</small></span>
+            <button type="button"
+                    class="btn btn-primary btn-sm float-right"
+                    [routerLink]="['/reserva', servicio.id]">
+                    Reservar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="loading" class="col alert alert-warning mt-3 animated infinite flash" role="alert">
+        Loading
+      </div>
+
+      <div *ngIf="servicio.nodata === true && !loading" class="col alert alert-danger mt-3" role="alert">
+        No se encontraron servicios con la búsqueda
+      </div>
+
+    </div>
+
+  </div>
+
+
 </div>

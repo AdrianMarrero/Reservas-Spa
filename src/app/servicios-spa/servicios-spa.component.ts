@@ -10,7 +10,11 @@ import { ServicioModel } from '../models/servicio.model';
 })
 export class ServiciosSpaComponent implements OnInit {
 
-  serviciosList: any;
+  serviciosList: object;
+  filterServicio = '';
+  filter = false;
+  imgUrl = 'assets/img/';
+  loading = true;
 
   constructor(private servicios: ReservasService) { }
 
@@ -20,11 +24,31 @@ export class ServiciosSpaComponent implements OnInit {
   }
 
   listAll() {
+    this.loading = true;
     this.servicios.getAllServicios()
     .subscribe( resp => {
-      console.log(resp);
       this.serviciosList = resp;
+      this.loading = false;
     });
+  }
+
+
+
+  onFilterChange(eve: any) {
+    this.filter = !this.filter;
+    this.serviciosList = [];
+
+    if (this.filter) {
+      this.loading = true;
+      this.servicios.getAllServiciosOrderBy(this.filter)
+      .subscribe( resp => {
+        console.log(resp);
+        this.serviciosList = resp;
+        this.loading = false;
+      });
+    } else {
+      this.listAll();
+    }
   }
 
 }
