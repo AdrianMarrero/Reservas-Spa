@@ -25,7 +25,8 @@ export class ReservasService {
     return this.http.get(`api/disponibilidad`);
   }
 
-  getAllServiciosOrderBy(filter) {    return this.http.get<ServicioModel[]>(this.urlServicios).pipe(
+  getAllServiciosOrderBy(filter) {
+    return this.http.get<ServicioModel[]>(this.urlServicios).pipe(
       map(messages => messages.sort((a1: ServicioModel, a2: ServicioModel) => a1.price - a2.price ))
     );
   }
