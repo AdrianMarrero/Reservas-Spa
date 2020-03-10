@@ -8,36 +8,32 @@ import { FilterPipe } from '../pipes/filter.pipe';
 import { ReservaComponent } from '../reserva/reserva.component';
 import { ReservasService } from '../services/reservas.service';
 import { ServiciosSpaComponent } from './servicios-spa.component';
+import { Observable, observable } from 'rxjs';
+import 'rxjs/add/observable/from';
+import 'rxjs/add/observable/empty';
+
 
 
 describe('ServiciosSpaComponent', () => {
   let component: ServiciosSpaComponent;
   let fixture: ComponentFixture<ServiciosSpaComponent>;
-  let service: ReservasService;
-
-  beforeEach(() => {
-
-    TestBed.configureTestingModule({
-      declarations: [ ServiciosSpaComponent, FilterPipe, ReservaComponent ],
-      imports: [
-        FormsModule,
-        AppRoutingModule,
-        HttpClientModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService)
-      ],
-      providers: [ReservasService]
-    });
-
-    fixture = TestBed.createComponent(ServiciosSpaComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
 
-  it('should create', () => {
+  beforeEach(() => TestBed.configureTestingModule({
+    declarations: [FilterPipe, ReservaComponent, ServiciosSpaComponent  ],
+    imports: [
+      FormsModule,
+      AppRoutingModule,
+      HttpClientModule,
+      InMemoryWebApiModule.forRoot(InMemoryDataService)
+    ],
+    providers: [ReservasService]
+
+  }));
+
+
+  it('El Componente de crea correctamente', () => {
     expect(component).toBeTruthy();
   });
-
-
 
 });

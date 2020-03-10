@@ -26,10 +26,10 @@ export class ServiciosSpaComponent implements OnInit {
   listAll() {
     this.loading = true;
     this.servicios.getAllServicios()
-    .subscribe( resp => {
-      this.serviciosList = resp;
-      this.loading = false;
-    });
+      .subscribe( resp => {
+        this.serviciosList = resp;
+        this.loading = false;
+      });
   }
 
 
