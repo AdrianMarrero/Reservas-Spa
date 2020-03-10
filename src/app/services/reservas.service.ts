@@ -8,9 +8,6 @@ import { ServicioModel } from '../models/servicio.model';
   providedIn: 'root'
 })
 export class ReservasService {
-  static getAllServicios() {
-    throw new Error("Method not implemented.");
-  }
 
   urlServicios = 'api/servicios/';
 
