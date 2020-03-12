@@ -1,7 +1,8 @@
-import { ServiciosSpaComponent } from './servicios-spa/servicios-spa.component';
+
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ReservaComponent } from './reserva/reserva.component';
+import { ServiciosSpaComponent } from './servicios-spa/servicios-spa.component';
 
 
 const routes: Routes = [

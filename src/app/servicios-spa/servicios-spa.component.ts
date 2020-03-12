@@ -42,7 +42,6 @@ export class ServiciosSpaComponent implements OnInit {
       this.loading = true;
       this.servicios.getAllServiciosOrderBy(this.filter)
       .subscribe( resp => {
-        console.log(resp);
         this.serviciosList = resp;
         this.loading = false;
       });
